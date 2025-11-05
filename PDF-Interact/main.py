@@ -33,7 +33,7 @@ async def upload_pdf(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-    return {"message": f"✅ {file.filename} processed successfully."}
+    return {"message": f"{file.filename} processed successfully."}
 
 # Request schema for chat
 class ChatRequest(BaseModel):
@@ -45,7 +45,6 @@ class ChatRequest(BaseModel):
 async def chat(req: ChatRequest):
     try:
         answer = generate_response(req.question, req.history)
-        print("✅✅✅✅✅✅✅✅✅✅✅✅")
         return {"answer": answer}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
